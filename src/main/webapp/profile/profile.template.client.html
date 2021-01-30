@@ -9,14 +9,9 @@
     <div class="container">
         <h1>Profile</h1>
 
-        <div class="alert alert-danger" role="alert">
-            Danger Will Robinson
-        </div>
-
         <div class="alert alert-success" role="alert">
-            Yay!!!
+            Profile successfully saved
         </div>
-
 
         <div class="mb-3 row">
             <label for="username"
@@ -28,7 +23,7 @@
                        readonly
                        class="form-control"
                        id="username"
-                       value="alice"/>
+                       value="Yara"/>
             </div>
         </div>
 
@@ -65,7 +60,7 @@
                 <input type="email"
                        class="form-control"
                        title="Please enter your email"
-                       placeholder="alice@wonderland"
+                       placeholder="yara@gmail.com"
                        id="email">
             </div>
         </div>
@@ -79,7 +74,7 @@
                 <select id="role" class="form-control">
                     <option>Faculty</option>
                     <option>Student</option>
-                    <option>Staff</option>
+                    <option>Admin</option>
                 </select>
             </div>
         </div>
@@ -87,7 +82,7 @@
         <div class="mb-3 row">
             <label for="dob"
                    class="col-sm-2 col-form-label">
-                DOB
+                Date of Birth
             </label>
             <div class="col-sm-10">
                 <input type="date"
@@ -99,14 +94,16 @@
         </div>
 
         <div class="mb-3 row">
-            <label for="dob"
-                   class="col-sm-2 col-form-label">
-            </label>
+            <label class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <a class="btn btn-dangers btn-block"
-                   href="../index.html">
-                    Logout
-                </a>
+                <button class="btn btn-success btn-block">Update</button>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <a href="../dashboard/dashboard.template.client.html" class="btn btn-danger btn-block">Logout</a>
             </div>
         </div>
 
