@@ -29,7 +29,7 @@ function createUser() {
 function deleteUser(event) {
     var deleteBtn = jQuery(event.target)
     var theIndex = deleteBtn.attr("id")
-    var theId = courses[theIndex]._id
+    var theId = users[theIndex]._id
 
     userService.deleteUser(theId)
         .then(function (status) {
@@ -67,7 +67,6 @@ function renderUsers(users) {
     $tbody.empty()
     for (var i = 0; i < users.length; i++) {
         var user = users[i]
-        user._id = i
         $tbody.append(`
             <tr>
                 <td>${user.username}</td>
