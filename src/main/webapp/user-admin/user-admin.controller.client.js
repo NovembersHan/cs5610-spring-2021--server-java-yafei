@@ -21,9 +21,10 @@ function createUser() {
             renderUsers(users)
         })
     $usernameFld.val("")
-    $passwordFld.val()
+    $passwordFld.val("")
     $firstNameFld.val("")
     $lastNameFld.val("")
+    $roleFld.val("FACULTY")
 }
 
 function deleteUser(event) {
@@ -61,6 +62,11 @@ function updateUser() {
             users[index] = selectedUser
             renderUsers(users)
         })
+    $usernameFld.val("")
+    $passwordFld.val("")
+    $firstNameFld.val("")
+    $lastNameFld.val("")
+    $roleFld.val("FACULTY")
 }
 
 function renderUsers(users) {
@@ -87,10 +93,6 @@ function renderUsers(users) {
     $removeBtn.click(deleteUser)
     $editBtn = $(".wbdv-edit")
     $editBtn.click(selectUser)
-    // jQuery(".wbdv-remove")
-    //     .click(deleteUser)
-    // jQuery(".wbdv-edit")
-    //     .click(selectUser)
 }
 
 function main() {
@@ -99,15 +101,11 @@ function main() {
     $firstNameFld = $("#firstNameFld")
     $lastNameFld = $("#lastNameFld")
     $roleFld = $("#roleFld")
-    // $removeBtn = $(".wbdv-remove")
-    // $editBtn = $(".wbdv-edit")
     $createBtn = $(".wbdv-create")
     $updateBtn = $(".wbdv-update")
     $userRowTemplate = $(".wbdv-template")
     $tbody = jQuery("tbody")
 
-    // $removeBtn.click(deleteUser)
-    // $editBtn.click(selectUser)
     $createBtn.click(createUser)
     $updateBtn.click(updateUser)
 
