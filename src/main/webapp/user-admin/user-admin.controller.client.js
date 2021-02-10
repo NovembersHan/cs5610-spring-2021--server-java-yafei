@@ -24,11 +24,7 @@
         $createBtn.click(createUser)
         $updateBtn.click(updateUser)
 
-        userService.findAllUsers()
-            .then(function (actualUsersFromServer) {
-                users = actualUsersFromServer
-                renderUsers(users)
-            })
+        findAllUsers()
     }
 
     function createUser() {
@@ -119,6 +115,25 @@
         $editBtn.click(selectUser)
     }
 
-    function findAllUsers() {} // optional - might not need this
-    function findUserById() {} // optional - might not need this
+    function findAllUsers() {
+        userService.findAllUsers()
+            .then(function (actualUsersFromServer) {
+                users = actualUsersFromServer
+                renderUsers(users)
+            })
+    }
+
+    // optional - might not need this
+    function findUserById(event) {
+        var selectBtn = jQuery(event.target)
+        var userId = selectBtn.attr("id")
+        userService.findUserById(userId)
+            .then(function (actualUser) {
+                $usernameFld.val(actualUser.username)
+                $passwordFld.val(actualUser.password)
+                $firstNameFld.val(actualUser.firstName)
+                $lastNameFld.val(actualUser.lastName)
+                $roleFld.val(actualUser.role)
+            })
+    }
 })();
