@@ -3,7 +3,7 @@ package com.example.wbdvsp2103hanyafeiserverjava.models;
 public class Widget {
     private String topicId;
     // Widget's unique identifier
-    private Integer id;
+    private Long id;
     // Type of the widget, e.g., Heading, List, Paragraph, Image, YouTube, HTML, Link
     private String type;
     // Useful to represent size of widget, e.g., heading size
@@ -99,11 +99,11 @@ public class Widget {
         this.topicId = topicId;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -134,31 +134,15 @@ public class Widget {
     public Widget() {
     }
 
-    public Widget(Integer id,
+    public Widget(Long id,
                   String topicId,
                   String type,
                   Integer size,
-                  String text,
-                  String name,
-                  Integer widgetOrder,
-                  String url,
-                  Integer width,
-                  Integer height,
-                  String cssClass,
-                  String style,
-                  String value) {
+                  String text) {
         this.id = id;
         this.topicId = topicId;
         this.type = type;
         this.size = size;
         this.text = text;
-        this.name = name;
-        this.widgetOrder = widgetOrder;
-        this.url = url;
-        this.width = width;
-        this.height = height;
-        this.cssClass = cssClass;
-        this.style = style;
-        this.value = value;
     }
 }
