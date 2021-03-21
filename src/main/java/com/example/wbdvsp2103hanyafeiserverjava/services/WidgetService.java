@@ -10,30 +10,22 @@ import java.util.List;
 @Service
 public class WidgetService {
     private List<Widget> widgets = new ArrayList<Widget>();
-//    {
-//        Widget w1 = new Widget(123l, "ABC123", "HEADING", 1, "Welcome to Widgets");
-//        Widget w2 = new Widget(234l, "ABC234", "PARAGRAPH", 1, "This is a paragraph");
-//        Widget w3 = new Widget(345l, "ABC234", "HEADING", 2, "Welcome to WebDev");
-//        Widget w4 = new Widget(456l, "ABC234", "PARAGRAPH", 1, "Lorem ipsum");
-//        widgets.add(w1);
-//        widgets.add(w2);
-//        widgets.add(w3);
-//        widgets.add(w4);
-//    }
+
     // implement crud operations
-    public Widget createWidgetForTopic(Widget widget) {
-        Long id = (new Date()).getTime();
+    public Widget createWidget(String tid, Widget widget) {
+        Integer id = (int) (new Date()).getTime();
         widget.setId(id);
+        widget.setTid(tid);
         widgets.add(widget);
         return widget;
     }
     public List<Widget> findAllWidgets() {
         return widgets;
     }
-    public List<Widget> findWidgetsForTopic(String topicId) {
+    public List<Widget> findWidgetsForTopic(String tid) {
         List<Widget> ws = new ArrayList<Widget>();
         for(Widget w: widgets) {
-            if(w.getTopicId().equals(topicId)) {
+            if(w.getTid().equals(tid)) {
                 ws.add(w);
             }
         }
@@ -47,7 +39,8 @@ public class WidgetService {
         }
         return null;
     }
-    public Integer updateWidget(Long id, Widget newWidget) {
+    public int updateWidget(String wid, Widget newWidget) {
+        Integer id = Integer.parseInt(wid);
         for(int i=0; i<widgets.size(); i++) {
             Widget w = widgets.get(i);
             if(w.getId().equals(id)) {
@@ -55,9 +48,10 @@ public class WidgetService {
                 return 1;
             }
         }
-        return -1;
+        return 0;
     }
-    public Integer deleteWidget(Long id) {
+    public int deleteWidget(String wid) {
+        Integer id = Integer.parseInt(wid);
         int index = -1;
         for(int i=0; i<widgets.size(); i++) {
             Widget w = widgets.get(i);
@@ -69,6 +63,6 @@ public class WidgetService {
             widgets.remove(index);
             return 1;
         }
-        return -1;
+        return 0;
     }
 }

@@ -11,21 +11,20 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class WidgetController {
     @Autowired
-    WidgetService service;// = new WidgetService();
+    WidgetService service;
 
     @PostMapping("/api/topics/{tid}/widgets")
-    public Widget createWidgetForTopic(
-            @PathVariable("tid") String topicId,
+    public Widget createWidget(
+            @PathVariable("tid") String tid,
             @RequestBody Widget widget) {
-        widget.setTopicId(topicId);
-        return service.createWidgetForTopic(widget);
+        return service.createWidget(tid, widget);
     }
 
     @GetMapping("/api/topics/{tid}/widgets")
     public List<Widget> findWidgetsForTopic(
-            @PathVariable("tid") String topicId
+            @PathVariable("tid") String tid
     ) {
-        return service.findWidgetsForTopic(topicId);
+        return service.findWidgetsForTopic(tid);
     }
 
     @GetMapping("/api/widgets")
@@ -40,14 +39,14 @@ public class WidgetController {
     }
 
     @DeleteMapping("/api/widgets/{wid}")
-    public Integer deleteWidget(@PathVariable("wid") Long id) {
-        return service.deleteWidget(id);
+    public int deleteWidget(@PathVariable("wid") String wid) {
+        return service.deleteWidget(wid);
     }
 
     @PutMapping("/api/widgets/{wid}")
-    public Integer updateWidget(
-            @PathVariable("wid") Long id,
+    public int updateWidget(
+            @PathVariable("wid") String wid,
             @RequestBody Widget widget) {
-        return service.updateWidget(id, widget);
+        return service.updateWidget(wid, widget);
     }
 }
