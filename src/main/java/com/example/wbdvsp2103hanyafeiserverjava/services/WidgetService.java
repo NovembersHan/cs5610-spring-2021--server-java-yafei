@@ -57,9 +57,20 @@ public class WidgetService {
         Long id = Long.parseLong(wid);
         Widget originalWidget = findWidgetById(id);
 
-        // TODO: copy all the other fields testing for null (findById(id).ispresent...)
         originalWidget.setText(newWidget.getText());
         originalWidget.setSrc(newWidget.getSrc());
+        originalWidget.setName(newWidget.getName());
+        originalWidget.setWidgetOrder(newWidget.getWidgetOrder());
+        originalWidget.setWidth(newWidget.getWidth());
+        originalWidget.setHeight(newWidget.getHeight());
+        originalWidget.setCssClass(newWidget.getCssClass());
+        originalWidget.setStyle(newWidget.getStyle());
+        originalWidget.setValue(newWidget.getValue());
+        originalWidget.setTid(newWidget.getTid());
+        originalWidget.setId(newWidget.getId());
+        originalWidget.setType(newWidget.getType());
+        originalWidget.setSize(newWidget.getSize());
+        originalWidget.setOrdered(newWidget.getOrdered());
 
         repository.save(originalWidget);
         return 1;

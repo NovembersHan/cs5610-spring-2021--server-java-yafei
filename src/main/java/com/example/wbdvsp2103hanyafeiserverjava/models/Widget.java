@@ -9,7 +9,7 @@ public class Widget {
     // Widget's unique identifier
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // Topic id
     private String tid;
@@ -108,11 +108,11 @@ public class Widget {
         this.tid = tid;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -148,7 +148,7 @@ public class Widget {
     public Widget() {
     }
 
-    public Widget(Integer id,
+    public Widget(Long id,
                   String tid,
                   String type,
                   Integer size,
