@@ -1,6 +1,8 @@
 package com.example.wbdvsp2103hanyafeiserverjava.services;
 
 import com.example.wbdvsp2103hanyafeiserverjava.models.Widget;
+import com.example.wbdvsp2103hanyafeiserverjava.repositories.WidgetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,60 +11,83 @@ import java.util.List;
 
 @Service
 public class WidgetService {
-    private List<Widget> widgets = new ArrayList<Widget>();
+
+    @Autowired
+    WidgetRepository repository;
+
+//    private List<Widget> widgets = new ArrayList<Widget>();
 
     // implement crud operations
     public Widget createWidget(String tid, Widget widget) {
-        Integer id = (int) (new Date()).getTime();
-        widget.setId(id);
         widget.setTid(tid);
-        widgets.add(widget);
-        return widget;
+
+        return repository.save(widget);
+//        Integer id = (int) (new Date()).getTime();
+//        widget.setId(id);
+//        widget.setTid(tid);
+//        widgets.add(widget);
+//        return widget;
     }
     public List<Widget> findAllWidgets() {
-        return widgets;
+        return repository.findAllWidgets();
+//        return (List<Widget>) repository.findAll();
+//        return widgets;
     }
     public List<Widget> findWidgetsForTopic(String tid) {
-        List<Widget> ws = new ArrayList<Widget>();
-        for(Widget w: widgets) {
-            if(w.getTid().equals(tid)) {
-                ws.add(w);
-            }
-        }
-        return ws;
+        return repository.findWidgetsForTopic(tid);
+
+//        List<Widget> ws = new ArrayList<Widget>();
+//        for(Widget w: widgets) {
+//            if(w.getTid().equals(tid)) {
+//                ws.add(w);
+//            }
+//        }
+//        return ws;
     }
     public Widget findWidgetById(Long id) {
-        for(Widget w: widgets) {
-            if(w.getId().equals(id)) {
-                return w;
-            }
-        }
-        return null;
+        return repository.findWidgetById(id);
+//        for(Widget w: widgets) {
+//            if(w.getId().equals(id)) {
+//                return w;
+//            }
+//        }
+//        return null;
     }
     public int updateWidget(String wid, Widget newWidget) {
-        Integer id = Integer.parseInt(wid);
-        for(int i=0; i<widgets.size(); i++) {
-            Widget w = widgets.get(i);
-            if(w.getId().equals(id)) {
-                widgets.set(i, newWidget);
-                return 1;
-            }
-        }
-        return 0;
+        Long id = Long.parseLong(wid);
+        Widget originalWidget = findWidgetById(id);
+
+        // TODO: copy all the other fields testing for null (findById(id).ispresent...)
+        originalWidget.setText(newWidget.getText());
+        originalWidget.setSrc(newWidget.getSrc());
+
+        repository.save(originalWidget);
+        return 1;
+//        Integer id = Integer.parseInt(wid);
+//        for(int i=0; i<widgets.size(); i++) {
+//            Widget w = widgets.get(i);
+//            if(w.getId().equals(id)) {
+//                widgets.set(i, newWidget);
+//                return 1;
+//            }
+//        }
+//        return 0;
     }
     public int deleteWidget(String wid) {
-        Integer id = Integer.parseInt(wid);
-        int index = -1;
-        for(int i=0; i<widgets.size(); i++) {
-            Widget w = widgets.get(i);
-            if(w.getId().equals(id)) {
-                index = i;
-            }
-        }
-        if(index >= 0) {
-            widgets.remove(index);
-            return 1;
-        }
-        return 0;
+        Long id = Long.parseLong(wid);
+        repository.deleteById(id);
+        return 1;
+//        int index = -1;
+//        for(int i=0; i<widgets.size(); i++) {
+//            Widget w = widgets.get(i);
+//            if(w.getId().equals(id)) {
+//                index = i;
+//            }
+//        }
+//        if(index >= 0) {
+//            widgets.remove(index);
+//            return 1;
+//        }
+//        return 0;
     }
 }

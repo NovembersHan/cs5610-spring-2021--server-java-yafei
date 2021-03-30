@@ -1,9 +1,18 @@
 package com.example.wbdvsp2103hanyafeiserverjava.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="widgets")
 public class Widget {
-    private String tid;
+
     // Widget's unique identifier
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    // Topic id
+    private String tid;
     // Type of the widget, e.g., Heading, List, Paragraph, Image, YouTube, HTML, Link
     private String type;
     // Useful to represent size of widget, e.g., heading size
@@ -15,7 +24,7 @@ public class Widget {
     // Order with respect to widgets in the same list
     private Integer widgetOrder;
     // Absolute or relative URL referring to online resource
-    private String url;
+    private String src;
     // Widget's horizontal size
     private Integer width;
     // Widget's vertical size
@@ -26,6 +35,8 @@ public class Widget {
     private String style;
     // Some arbitrary initial value interpreted by the widget
     private String value;
+
+    private Boolean ordered;
 
     public String getName() {
         return name;
@@ -43,12 +54,10 @@ public class Widget {
         this.widgetOrder = widgetOrder;
     }
 
-    public String getUrl() {
-        return url;
-    }
+    public String getSrc() { return src; }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setSrc(String src) {
+        this.src = src;
     }
 
     public Integer getWidth() {
@@ -130,6 +139,11 @@ public class Widget {
     public void setText(String text) {
         this.text = text;
     }
+
+    public Boolean getOrdered() { return ordered; }
+
+    public void setOrdered(Boolean ordered) { this.ordered = ordered; }
+
 
     public Widget() {
     }
